@@ -14,7 +14,6 @@ const Homepage = () => {
     if (error) return <div className={styles.error}>Error loading forms: {JSON.stringify(error)}</div>;
 
     return (
-
         <>
             <PageHeader title="All Forms">
                 <Button onClick={() => navigate('/forms/new')} variant="primary">
