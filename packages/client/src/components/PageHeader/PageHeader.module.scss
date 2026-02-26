@@ -1,0 +1,62 @@
+@use '../../styles/_styles' as styles;
+
+.header {
+    background: styles.$light;
+    border-bottom: 1px solid #dadce0;
+    padding: 24px 0;
+    margin-bottom: 24px;
+}
+
+.headerBlocks {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.titleBlock {
+    flex: 1;
+
+    h1 {
+        margin: 0 0 8px 0;
+        color: styles.$darker;
+        font-size: 2rem;
+        font-weight: 500;
+        line-height: 1.2;
+    }
+
+    p {
+        margin: 0;
+        color: styles.$dark;
+        font-size: 0.875rem;
+        line-height: 1.5;
+    }
+}
+
+.actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .headerBlocks {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .titleBlock h1 {
+        font-size: 1.5rem;
+    }
+
+    .actions {
+        width: 100%;
+        
+        button {
+            flex: 1;
+        }
+    }
+}

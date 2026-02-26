@@ -1,9 +1,13 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useCreateFormMutation } from '../../api/generated';
+import { useCreateFormMutation } from '../../api/enhancedApi';
 import { type QuestionType } from '../../api/generated';
 import QuestionBuilder from '../QuestionBuilder/QuestionBuilder';
 import styles from './FormBuilderPage.module.scss';
+
+import { validateForm, prepareQuestions } from '../../utils/formValidation';
+import Button from '../../components/Button/Button';
+import PageHeader from '../../components/PageHeader/PageHeader';
 
 interface Question {
     text: string;
@@ -39,14 +43,9 @@ const FormBuilderPage = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        if (!title.trim() || questions.length === 0) {
-            alert('Please provide a title and at least one question');
-            return;
-        }
-
-        const invalidQuestion = questions.find(q => !q.text.trim());
-        if (invalidQuestion) {
-            alert('All questions must have text');
+        const validation = validateForm(title, questions);
+        if (!validation.valid) {
+            alert(validation.error);
             return;
         }
 
@@ -54,11 +53,7 @@ const FormBuilderPage = () => {
             await createForm({
                 title,
                 description: description || undefined,
-                questions: questions.map(q => ({
-                    text: q.text,
-                    type: q.type,
-                    options: q.options && q.options.length > 0 ? q.options : undefined,
-                })),
+                questions: prepareQuestions(questions),
             }).unwrap();
 
             alert('Form created successfully!');
@@ -70,13 +65,14 @@ const FormBuilderPage = () => {
     };
 
     return (
+        <>
+        <PageHeader title='New Form'>
+            <Button onClick={() => navigate('/')} variant='primary'>
+                Back to Home
+            </Button>
+        </PageHeader>
+
         <div className={styles.container}>
-            <header className={styles.header}>
-                <h1>Create New Form</h1>
-                <button onClick={() => navigate('/')} className={styles.backButton}>
-                    Back to Home
-                </button>
-            </header>
 
             <form onSubmit={handleSubmit} className={styles.form}>
                 <div className={styles.formHeader}>
@@ -136,6 +132,7 @@ const FormBuilderPage = () => {
                 </div>
             </form>
         </div>
+        </>
     );
 };
 

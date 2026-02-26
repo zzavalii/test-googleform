@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { type QuestionType } from '../../api/generated';
 import styles from './QuestionBuilder.module.scss';
+import Button from '../../components/Button/Button';
 
 interface Question {
     text: string;
@@ -55,14 +56,13 @@ const QuestionBuilder = ({ question, index, onUpdate, onDelete }: QuestionBuilde
         <div className={styles.questionCard}>
             <div className={styles.questionHeader}>
                 <span className={styles.questionNumber}>Question {index + 1}</span>
-                <button
+                <Button
                     type="button"
                     onClick={onDelete}
                     className={styles.deleteButton}
-                    aria-label="Delete question"
-                >
+                    variant='outline'>
                     ×
-                </button>
+                </Button>
             </div>
 
             <input
@@ -96,13 +96,13 @@ const QuestionBuilder = ({ question, index, onUpdate, onDelete }: QuestionBuilde
                             {question.options.map((option, optionIndex) => (
                                 <li key={optionIndex} className={styles.optionItem}>
                                     <span>{option}</span>
-                                    <button
+                                    <Button
                                         type="button"
                                         onClick={() => removeOption(optionIndex)}
                                         className={styles.removeOptionButton}
-                                    >
+                                        variant='outline'>
                                         ×
-                                    </button>
+                                    </Button>
                                 </li>
                             ))}
                         </ul>
@@ -114,7 +114,7 @@ const QuestionBuilder = ({ question, index, onUpdate, onDelete }: QuestionBuilde
                             placeholder="Enter option"
                             value={optionInput}
                             onChange={(e) => setOptionInput(e.target.value)}
-                            onKeyPress={(e) => {
+                            onKeyDown={(e) => {
                                 if (e.key === 'Enter') {
                                     e.preventDefault();
                                     addOption();
@@ -122,13 +122,13 @@ const QuestionBuilder = ({ question, index, onUpdate, onDelete }: QuestionBuilde
                             }}
                             className={styles.optionInput}
                         />
-                        <button
+                        <Button
                             type="button"
                             onClick={addOption}
                             className={styles.addOptionButton}
-                        >
-                            + Add
-                        </button>
+                            variant='third'>
+                                + Add
+                        </Button>
                     </div>
                 </div>
             )}

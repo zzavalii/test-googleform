@@ -6,36 +6,43 @@
     padding: 2rem;
 }
 
+// .header {
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//     margin-bottom: 2rem;
+
+//     h1 {
+//         font-size: 2rem;
+//         color: styles.$dark;
+//     }
+// }
+
+
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
+    width: 100%;
+    background-color: styles.$light;
 
-    h1 {
-        font-size: 2rem;
-        color: styles.$dark;
-    }
-}
+    .header__blocks{
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 24px;
+        height: 100px;
 
-.backButton {
-    padding: 0.5rem 1rem;
-    background: #f1f3f4;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: background 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
 
-    &:hover {
-        background: #e8eaed;
+        h1{
+            color: styles.$dark;
+        }
     }
 }
 
 .form {
     background: white;
     border-radius: 12px;
-    padding: 2rem;
+    padding: 4rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -45,7 +52,7 @@
 
 .titleInput {
     width: 100%;
-    padding: 1rem;
+    padding: 0rem 0rem 1rem 1rem;
     font-size: 1.5rem;
     border: none;
     border-bottom: 2px solid #e0e0e0;
@@ -64,12 +71,12 @@
 
 .descriptionInput {
     width: 100%;
-    padding: 0.75rem;
+    padding: 0.75rem 0rem 0.75rem 0.75rem;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
     outline: none;
     resize: vertical;
-    font-family: inherit;
+    font-size: 14px;
 
     &:focus {
         border-color: #1a73e8;

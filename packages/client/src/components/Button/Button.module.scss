@@ -1,0 +1,76 @@
+@use '../../styles/_styles' as styles;
+
+.button {
+    border: none;
+    padding: 12px 24px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+}
+
+.primary {
+    color: white;
+    background-color: styles.$dark;
+    box-shadow: 0 6px 12px rgba(37, 99, 235, 0.12);
+
+    &:hover:not(:disabled) {
+        background: styles.$darker;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(37, 99, 235, 0.16);
+    }
+
+    &:active:not(:disabled) {
+        transform: translateY(0);
+    }
+}
+
+.secondary {
+    background: white;
+    border: none;
+    color: #202124;
+    outline: none;
+    transition: 0.3s ease;
+
+    &:hover:not(:disabled) {
+        background-color: styles.$light;
+        border: none;
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.third{
+    background: rgb(171, 168, 160);
+    border: none;
+    color: #202124;
+    outline: none;
+
+    &:hover:not(:disabled) {
+        background: rgb(145, 142, 134);
+        border: none;
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.outline {
+    background: transparent;
+    border: 1px solid #dadce0;
+    color: styles.$dark;
+
+    &:hover:not(:disabled) {
+        background: rgba(37, 99, 235, 0.06);
+    }
+}
